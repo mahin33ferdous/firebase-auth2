@@ -15,9 +15,13 @@ const RegisterReactBoostrap = () => {
     // }
 //const provider =new createUserWithEmailAndPassword()
 const [passwordError,setPasswordError]=useState('');
+const [success,setSuccess]=useState(false)
+
     const handleR= (event)=>{
      event.preventDefault()
-     const email=event.target.email.value;
+     setSuccess(false)
+     const form=event.target
+     const email=form.email.value;
      const password=event.target.password.value;
      console.log(email,password)
      if(!/(?:[^A-Z]*[A-Z])/.test(password))
@@ -40,9 +44,12 @@ const [passwordError,setPasswordError]=useState('');
         const user=result.user;
       
        console.log(user)
+       setSuccess(true)
+       form.reset();
      })
      .catch(error=>{
         console.log('error',error);
+        setPasswordError(error.message)
       })
     
     }
@@ -60,6 +67,7 @@ const [passwordError,setPasswordError]=useState('');
         <Form.Control type="password" name="password" placeholder="Password" />
       </Form.Group>
            <p className='text-danger'>{passwordError}</p>
+           {success && <p className='text-success'>user created successfully</p>}
       <Button variant="primary" type="submit">
         Submit
       </Button>
