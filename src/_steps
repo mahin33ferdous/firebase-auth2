@@ -1,0 +1,9 @@
+/*
+
+get from value
+set form onsubmitHandler
+set event parameter
+event.target.email.value
+*/
+
+have to enable Email & password in authentication
